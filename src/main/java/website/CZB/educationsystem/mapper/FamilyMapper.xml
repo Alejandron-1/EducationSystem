@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="website.CZB.educationsystem.mapper.FamilyMapper">
+    <resultMap id="BaseResultMap" type="website.CZB.educationsystem.entities.Family">
+        <constructor>
+            <arg column="family_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+            <arg column="family_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+        </constructor>
+    </resultMap>
+    <select id="getByFamilyName" parameterType="java.lang.String" resultType="website.CZB.educationsystem.entities.Family">
+        select * from `family` where family_name like #{familyName}
+    </select>
+    <select id="familyList" resultType="website.CZB.educationsystem.entities.Family">
+        select * from `family`
+    </select>
+    <update id="changeFamily" parameterType="website.CZB.educationsystem.entities.Family">
+        update `family` set family_name = #{familyName} where family_id = #{familyId}
+    </update>
+    <delete id="deleteFamily" parameterType="website.CZB.educationsystem.entities.Family">
+        delete from `family` where family_id = #{familyId}
+    </delete>
+    <insert id="addFamily" parameterType="website.CZB.educationsystem.entities.Family">
+        insert into `family` (family_id,family_name) values (#{familyId},#{familyName})
+    </insert>
+</mapper>

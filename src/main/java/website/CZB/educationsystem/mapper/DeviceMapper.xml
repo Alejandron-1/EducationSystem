@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="website.CZB.educationsystem.mapper.deviceMapper">
+    <resultMap id="BaseResultMap" type="website.CZB.educationsystem.entities.device">
+        <constructor>
+            <arg column="device_id" javaType="java.lang.String" jdbcType="CHAR" />
+            <arg column="device_desc" javaType="java.lang.String" jdbcType="CHAR" />
+        </constructor>
+    </resultMap>
+
+    <select id="findDeviceList" resultType="website.CZB.educationsystem.entities.Device">
+        select * from `device`
+    </select>
+    <select id="getByDeviceId" parameterType="java.lang.String" resultType="website.CZB.educationsystem.entities.Device">
+        select * from `device` where device_id like #{deviceId}
+    </select>
+    <insert id="addDevice" parameterType="website.CZB.educationsystem.entities.Device">
+        insert into `device` (device_id) values (#{deviceId})
+    </insert>
+    <delete id="deleteDevice" parameterType="website.CZB.educationsystem.entities.Device">
+        delete from `device` where device_id like #{deviceId}
+    </delete>
+    <update id="changeDevice" parameterType="website.CZB.educationsystem.entities.Device">
+        update `device` set device_price=#{deviceDesc} where device_id like #{deviceId}
+    </update>
+</mapper>

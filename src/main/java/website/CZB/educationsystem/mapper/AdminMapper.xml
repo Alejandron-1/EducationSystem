@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="website.CZB.educationsystem.mapper.adminomerMapper">
+    <resultMap id="BaseResultMap" type="website.CZB.educationsystem.entities.admin">
+        <constructor>
+            <arg column="admin_phone" javaType="java.lang.String" jdbcType="CHAR" />
+            <arg column="admin_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
+            
+        </constructor>
+    </resultMap>
+    <select id="getByAdminPhone" parameterType="java.lang.String" resultType="website.CZB.educationsystem.entities.Admin">
+        select * from `admin` where admin_phone = #{adminPhone}
+    </select>
+    <select id="myDeviceList" parameterType="java.lang.String" resultType="website.CZB.educationsystem.entities.Device">
+        select * from `device` where admin_phone = #{adminPhone}
+    </select>
+
+    <insert id="register" parameterType="website.CZB.educationsystem.entities.Admin">
+        insert into `admin` (admin_phone,admin_name,password) values (#{adminPhone},#{adminName},#{password})
+    </insert>
+    <update id="update" parameterType="website.CZB.educationsystem.entities.Admin">
+        update `admin` set password = #{password} where admin_phone = #{adminPhone}
+    </update>
+
+    <update id="changeName" parameterType="website.CZB.educationsystem.entities.Admin">
+        update `admin` set admin_name = #{adminName} where admin_phone = #{adminPhone}
+    </update>
+</mapper>
