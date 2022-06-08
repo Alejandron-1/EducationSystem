@@ -14,16 +14,18 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/admin")
 public class AdminController {
     private AdminService adminService;
-    private Result result;
+    private Result result = new Result();
 
     @Autowired
     public AdminController(AdminService adminService) {
         this.adminService = adminService;
+
     }
 
     @RequestMapping("/register")
     public Result addAdmin(@RequestBody Admin admin){
-        System.out.println("register");
+        System.out.println("register....");
+        System.out.println(admin);
         if(adminService.getByAdminPhone(admin.getAdminPhone()) != null){ // 已存在
             result.setInfo("该管理员以存在",null);
         }else{
@@ -34,12 +36,15 @@ public class AdminController {
     }
 
     @RequestMapping("/login")
-    public Result login(@RequestBody Admin admin , HttpServletRequest request){
+    public Result login(@RequestBody Admin admin){
+        // , HttpServletRequest request
+        System.out.println("Admin login");
+        System.out.println(admin);
         Admin admin1 = adminService.getByAdminPhone(admin.getAdminPhone());
         if(admin1 != null){ //  存在该用户
             if(admin1.getPassword().equals(admin.getPassword())){
                 //密码正确
-                request.getSession().setAttribute("admin",admin);
+                //request.getSession().setAttribute("admin",admin);
                 result.setSuccess("登录成功",null);
             }else{
                 result.setInfo("用户名或密码错误",null);

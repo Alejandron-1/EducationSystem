@@ -24,11 +24,14 @@ public class UserController {
     }
 
     @RequestMapping("/userregister")
-    public Result resultRegister(@RequestBody User user){
+    public Result register(@RequestBody User user){
+
+        System.out.println("userregister");
+
         if(userService.getByUserPhone(user.getUserPhone()) != null){ // 已存在
             result.setInfo("该用户以存在",null);
         }else {
-            userService.recharge(user);
+            userService.register(user);
             result.setSuccess("用户注册成功",null);
         }
         return result;
@@ -36,6 +39,9 @@ public class UserController {
     
     @RequestMapping("/userlogin")
     public Result login(@RequestBody User user, HttpServletRequest request){
+
+        System.out.println("userlogin");
+
         User user1=userService.getByUserPhone(user.getUserPhone());
         if(user1!=null){//存在该账户
             if(user1.getPassword().equals(user.getPassword())){//密码正确

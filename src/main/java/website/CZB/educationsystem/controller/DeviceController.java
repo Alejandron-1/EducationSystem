@@ -22,7 +22,7 @@ public class DeviceController {
     }
 
     @RequestMapping("/addDevice")
-    public Result addTable(@RequestBody Device device){
+    public Result addDevice(@RequestBody Device device){
         if(deviceService.getByDeviceId(device.getDeviceId())!=null){//id重复！
             result.setInfo("该设备已存在",null);
         }else{
@@ -33,7 +33,7 @@ public class DeviceController {
     }
 
     @RequestMapping("/deleteDevice")
-    public Result deleteTable(@RequestBody Device Device){
+    public Result deleteDevice(@RequestBody Device Device){
         if(deviceService.getByDeviceId(Device.getDeviceId())==null){//id重复！
             result.setInfo("该设备不存在",null);
         }else{
@@ -44,7 +44,7 @@ public class DeviceController {
     }
 
     @RequestMapping("/changeDevice")
-    public Result changeTable(@RequestBody Device Device){
+    public Result changeDevice(@RequestBody Device Device){
         if(deviceService.getByDeviceId(Device.getDeviceId())==null){//id重复！
             result.setInfo("该设备不存在",null);
         }else{
@@ -55,9 +55,9 @@ public class DeviceController {
     }
     
     @RequestMapping("/findDeviceList")
-    public Result findTableList(){
-        List<Device> tableList = deviceService.findDeviceList();
-        result.setSuccess("查询设备成功！",tableList);
+    public Result findDeviceList(){
+        List<Device> deviceList = deviceService.findDeviceList();
+        result.setSuccess("查询设备成功！",deviceList);
         return result;
     }
 

@@ -15,8 +15,6 @@ public interface UserMapper {
 
     void update(User user);
 
-    void recharge(User user);
-
     void changeName(User user);
 
     void deleteUser(User user);

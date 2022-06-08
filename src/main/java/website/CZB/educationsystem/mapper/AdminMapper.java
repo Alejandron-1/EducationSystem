@@ -12,10 +12,8 @@ public interface AdminMapper {
 
     void update(Admin admin);
 
-    void recharge(Admin admin);
-
     void changeName(Admin admin);
 
-    void deleteUser(Admin admin);
+    //void deleteAdmin(Admin admin);
 
 }

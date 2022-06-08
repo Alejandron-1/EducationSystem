@@ -16,6 +16,8 @@ public class AdminService {
         this.adminMapper = adminMapper;
     }
     public Admin getByAdminPhone(String adminPhone){
+        System.out.println("999999999999999999" + adminMapper + adminPhone);
+        System.out.println(adminMapper);
         return adminMapper.getByAdminPhone(adminPhone);
     }
 
@@ -27,17 +29,13 @@ public class AdminService {
         adminMapper.update(admin);
     }
 
-    public void recharge(Admin admin){
-        adminMapper.recharge(admin);
-    }
-
     public void changeName(Admin admin){
         adminMapper.changeName(admin);
     }
 
-    public void deleteAdmin(Admin admin){
-        adminMapper.deleteUser(admin);
-    }
+//    public void deleteAdmin(Admin admin){
+//        adminMapper.deleteAdmin(admin);
+//    }
 
 
 }

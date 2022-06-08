@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="website.CZB.educationsystem.mapper.adminomerMapper">
-    <resultMap id="BaseResultMap" type="website.CZB.educationsystem.entities.admin">
+<mapper namespace="website.CZB.educationsystem.mapper.AdminMapper">
+    <resultMap id="BaseResultMap" type="website.CZB.educationsystem.entities.Admin">
         <constructor>
             <arg column="admin_phone" javaType="java.lang.String" jdbcType="CHAR" />
             <arg column="admin_name" javaType="java.lang.String" jdbcType="VARCHAR" />
             <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
-            
+            <arg column="admin_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
         </constructor>
     </resultMap>
     <select id="getByAdminPhone" parameterType="java.lang.String" resultType="website.CZB.educationsystem.entities.Admin">
         select * from `admin` where admin_phone = #{adminPhone}
-    </select>
-    <select id="myDeviceList" parameterType="java.lang.String" resultType="website.CZB.educationsystem.entities.Device">
-        select * from `device` where admin_phone = #{adminPhone}
     </select>
 
     <insert id="register" parameterType="website.CZB.educationsystem.entities.Admin">

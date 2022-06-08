@@ -30,9 +30,6 @@ public class UserService {
         userMapper.update(user);
     }
 
-    public void recharge(User user){
-        userMapper.recharge(user);
-    }
 
     public void changeName(User user){
         userMapper.changeName(user);

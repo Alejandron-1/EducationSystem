@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="website.CZB.educationsystem.mapper.deviceMapper">
-    <resultMap id="BaseResultMap" type="website.CZB.educationsystem.entities.device">
+<mapper namespace="website.CZB.educationsystem.mapper.DeviceMapper">
+    <resultMap id="BaseResultMap" type="website.CZB.educationsystem.entities.Device">
         <constructor>
             <arg column="device_id" javaType="java.lang.String" jdbcType="CHAR" />
             <arg column="device_desc" javaType="java.lang.String" jdbcType="CHAR" />
