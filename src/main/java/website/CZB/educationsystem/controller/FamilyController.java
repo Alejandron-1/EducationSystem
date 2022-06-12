@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/family")
 public class FamilyController {
     private FamilyService familyService;
-    private Result result;
+    private Result result = new Result();
 
     @Autowired
     public FamilyController(FamilyService familyService) {
@@ -22,22 +22,23 @@ public class FamilyController {
     }
     @RequestMapping("/addFamily")
     public Result addFamily(@RequestBody Family family){
+        System.out.println(family);
         if(familyService.getByFamilyName(family.getFamilyName()) != null){ // 已存在
-            result.setInfo("该家庭已存在",null);
+            result.setInfo("该家庭已存在",familyService.getByFamilyName(family.getFamilyName()));
         }else {
             familyService.addFamily(family);
-            result.setSuccess("添加家庭成功！",null);
+            result.setSuccess("添加家庭成功！",family);
         }
         return result;
     }
 
     @RequestMapping("/deleteFamily")
     public Result deleteFamily(@RequestBody Family family){
-        if(familyService.getByFamilyName(family.getFamilyName()) == null){ // 不存在
-            result.setInfo("该家庭不存在",null);
+        if(familyService.getByFamilyName(family.getFamilyName()) != null){ // 不存在
+            result.setInfo("该家庭不存在",familyService.getByFamilyName(family.getFamilyName()));
         }else {
             familyService.deleteFamily(family);
-            result.setSuccess("删除家庭成功！",null);
+            result.setSuccess("删除家庭成功！",family);
         }
         return result;
     }
@@ -48,7 +49,7 @@ public class FamilyController {
             result.setInfo("该家庭已存在",null);
         }else {
             familyService.changeFamily(family);
-            result.setSuccess("修改家庭成功！",null);
+            result.setSuccess("修改家庭成功！",family);
         }
         return result;
     }

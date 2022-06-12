@@ -23,16 +23,16 @@ public class UserService {
     }
 
     public void register(User user){
-        userMapper.register(user);
+        userMapper.userRegister(user);
     }
 
     public void update(User user){
-        userMapper.update(user);
+        userMapper.userUpdate(user);
     }
 
 
     public void changeName(User user){
-        userMapper.changeName(user);
+        userMapper.userChangeName(user);
     }
 
     public void deleteUser(User user){

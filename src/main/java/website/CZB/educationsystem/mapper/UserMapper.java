@@ -11,11 +11,11 @@ public interface UserMapper {
 
     User getByUserPhone(String userPhone);
 
-    void register(User user);
+    void userRegister(User user);
 
-    void update(User user);
+    void userUpdate(User user);
 
-    void changeName(User user);
+    void userChangeName(User user);
 
     void deleteUser(User user);
 

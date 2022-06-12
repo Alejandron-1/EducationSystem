@@ -6,7 +6,6 @@ import java.io.Serializable;
 @Data
 public class User implements Serializable {
 
-    private Integer userId;
 
     private String userPhone;
 
@@ -14,6 +13,6 @@ public class User implements Serializable {
 
     private String userName;
 
-    private Integer familyId;
+    private String familyId;
 }
 

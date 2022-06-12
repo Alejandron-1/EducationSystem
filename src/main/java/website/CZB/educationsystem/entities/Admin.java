@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 @Data
 public class Admin implements Serializable {
-    private Integer adminId;
+
 
     private String adminPhone;
 

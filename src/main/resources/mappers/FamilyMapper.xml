@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="website.CZB.educationsystem.mapper.FamilyMapper">
-    <resultMap id="BaseResultMap" type="website.CZB.educationsystem.entities.Family">
-        <constructor>
-            <arg column="family_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-            <arg column="family_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-        </constructor>
+    <resultMap id="FamilyMap" type="website.CZB.educationsystem.entities.Family">
+<!--        <constructor>-->
+<!--            <arg column="family_id" javaType="java.lang.String" jdbcType="INTEGER" />-->
+<!--            <arg column="family_name" javaType="java.lang.String" jdbcType="VARCHAR" />-->
+<!--        </constructor>-->
+
+        <id column="family_id" property="familyId" />
+        <result column="family_name" property="familyName"/>
+
     </resultMap>
-    <select id="getByFamilyName" parameterType="java.lang.String" resultType="website.CZB.educationsystem.entities.Family">
+<!--  resultType="website.CZB.educationsystem.entities.Family"  -->
+    <select id="getByFamilyName" parameterType="java.lang.String" resultMap="FamilyMap">
         select * from `family` where family_name like #{familyName}
     </select>
-    <select id="familyList" resultType="website.CZB.educationsystem.entities.Family">
+    <select id="familyList" resultMap="FamilyMap">
         select * from `family`
     </select>
     <update id="changeFamily" parameterType="website.CZB.educationsystem.entities.Family">

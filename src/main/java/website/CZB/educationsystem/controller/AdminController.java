@@ -36,7 +36,7 @@ public class AdminController {
     }
 
     @RequestMapping("/login")
-    public Result login(@RequestBody Admin admin){
+    public Result login(@RequestBody Admin admin, HttpServletRequest request){
         // , HttpServletRequest request
         System.out.println("Admin login");
         System.out.println(admin);
@@ -44,8 +44,9 @@ public class AdminController {
         if(admin1 != null){ //  存在该用户
             if(admin1.getPassword().equals(admin.getPassword())){
                 //密码正确
-                //request.getSession().setAttribute("admin",admin);
-                result.setSuccess("登录成功",null);
+                request.getSession().setAttribute("admin",admin);
+                result.setSuccess("登录成功",admin);
+                System.out.println("登录成功");
             }else{
                 result.setInfo("用户名或密码错误",null);
             }

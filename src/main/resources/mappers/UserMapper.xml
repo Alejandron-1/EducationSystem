@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="website.CZB.educationsystem.mapper.UserMapper">
-    <resultMap id="BaseResultMap" type="website.CZB.educationsystem.entities.User">
-        <constructor>
-            <arg column="user_phone" javaType="java.lang.String" jdbcType="CHAR" />
-            <arg column="user_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-            <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
-            <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-            <arg column="family_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-        </constructor>
+    <resultMap id="UserMap" type="website.CZB.educationsystem.entities.User">
+
+        <id column="user_phone" property="userPhone" />
+        <result column="password" property="password"/>
+        <result column="user_name" property="userName" />
+        <result column="family_id" property="familyId" />
     </resultMap>
-    <select id="getByUserPhone" parameterType="java.lang.String" resultType="website.CZB.educationsystem.entities.User">
-        select * from `user` where user_phone = #{userPhone}
+
+    <resultMap id="DeviceMap" type="website.CZB.educationsystem.entities.Device">
+        <id column="device_id" property="deviceId" />
+        <result column="device_desc" property="deviceDesc"/>
+        <result column="device_user" property="deviceUser"/>
+    </resultMap>
+
+<!--   resultType="website.CZB.educationsystem.entities.User" -->
+<!--   resultMap="BaseResultMap" -->
+    <select id="getByUserPhone" parameterType="java.lang.String" resultMap="UserMap">
+        select user_phone,password,user_name,family_id from `user` where user_phone = #{userPhone}
     </select>
-    <select id="myDeviceList" parameterType="java.lang.String" resultType="website.CZB.educationsystem.entities.Device">
-        select * from `device` where user_phone = #{userPhone}
+    <select id="myDeviceList" parameterType="java.lang.String"  resultMap="DeviceMap">
+        select * from `device` where device_user = #{userPhone}
     </select>
 
-    <insert id="register" parameterType="website.CZB.educationsystem.entities.User">
-        insert into `user` (user_phone,user_name,password) values (#{userPhone},#{userName},#{password})
+    <insert id="userRegister" parameterType="website.CZB.educationsystem.entities.User">
+        insert into `user` (user_phone,user_name,password,family_id) values (#{userPhone},#{userName},#{password},#{familyId})
     </insert>
-    <update id="update" parameterType="website.CZB.educationsystem.entities.User">
+    <update id="userUpdate" parameterType="website.CZB.educationsystem.entities.User">
         update `user` set password = #{password} where user_phone = #{userPhone}
     </update>
 
@@ -28,7 +35,7 @@
         delete from `user` where user_phone = #{userPhone}
     </delete>
 
-    <update id="changeName" parameterType="website.CZB.educationsystem.entities.User">
+    <update id="userChangeName" parameterType="website.CZB.educationsystem.entities.User">
         update `user` set user_name = #{userName} where user_phone = #{userPhone}
     </update>
 </mapper>

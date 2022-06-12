@@ -11,4 +11,6 @@ public class Device implements Serializable {
 
     private String deviceDesc;
 
+    private String deviceUser;
+
 }

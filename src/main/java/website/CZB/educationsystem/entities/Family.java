@@ -4,7 +4,7 @@ import lombok.Data;
 import java.io.Serializable;
 @Data
 public class Family implements Serializable {
-    private Integer familyId;
+    private String familyId;
 
     private String familyName;
 }

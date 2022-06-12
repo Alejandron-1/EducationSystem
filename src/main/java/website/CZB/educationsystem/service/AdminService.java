@@ -16,8 +16,6 @@ public class AdminService {
         this.adminMapper = adminMapper;
     }
     public Admin getByAdminPhone(String adminPhone){
-        System.out.println("999999999999999999" + adminMapper + adminPhone);
-        System.out.println(adminMapper);
         return adminMapper.getByAdminPhone(adminPhone);
     }
 
